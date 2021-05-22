@@ -13,9 +13,6 @@ canvas{
 	margin-left:  calc(50vw - 300px);
 }
 
-
-
-
 .colores{
 	width: 100px;
 	height: 100vh;
@@ -28,3 +25,14 @@ canvas{
 	height: 25px;
 }
 
+/* #img{
+	position: absolute;
+	width: 100px;
+	height: auto;
+	top: 50%;
+	z-index: 1;
+} */
+
+#img{
+	display: none;
+}

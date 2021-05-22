@@ -1,8 +1,7 @@
+let canvas = document.getElementById("canvas");
+let ctx = canvas.getContext("2d");
 
-var canvas = document.getElementById("canvas");
-var ctx = canvas.getContext("2d");
-
-var rect = canvas.getBoundingClientRect();
+let rect = canvas.getBoundingClientRect();
 
 canvas.width = 600;
 canvas.height = 600;
@@ -10,11 +9,10 @@ canvas.height = 600;
 ctx.fillStyle = "#fff";
 ctx.fillRect(0,0,600,600);
 
-var x = 0;
-var y = 0;
-var color = "#000"
-var dibujando = false;
-
+let x = 0;
+let y = 0;
+let color = "#000"
+let dibujando = false;
 
 canvas.addEventListener("mouseout",function(e){
 	dibujando = false;
@@ -25,16 +23,13 @@ canvas.addEventListener("mousedown",function(e){
 	dibujando = true;
 });
 
-
 canvas.addEventListener("mousemove",function(e){
 	if (dibujando == true) {
 		dibujar(x,y,e.clientX - rect.left , e.clientY - rect.top)
 		x = e.clientX - rect.left;
 		y = e.clientY - rect.top;
-
 	}
 })
-
 
 canvas.addEventListener("mouseup",function(e){
 	if (dibujando == true) {
@@ -45,8 +40,6 @@ canvas.addEventListener("mouseup",function(e){
 	}
 })
 
-
-
 function dibujar(x1,y1,x2,y2){
 	ctx.beginPath();
 	ctx.strokeStyle = color;
@@ -56,20 +49,6 @@ function dibujar(x1,y1,x2,y2){
 	ctx.stroke();
 	ctx.closePath();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function generarColores(){
 	var div = document.querySelector(".colores");
@@ -86,10 +65,6 @@ function generarColores(){
 function cambiarColor(hexa){
 	color =hexa;
 }
-
-
-
-
 
 function PasarDecimalAHexa(num){
 	var decimal = num;
@@ -125,11 +100,6 @@ function PasarDecimalAHexa(num){
 	return hexa;
 }
 
-
-
-
-
-
 function pasarNumeroALetra(num){
 	var letras = ["A","B","C","D","E","F"];
 	if (num >= 10) {
@@ -140,30 +110,29 @@ function pasarNumeroALetra(num){
 	}
 }
 
-
-
-
 function download(){
-
 	var c = canvas;
-
 	let filename = prompt("Guardar como",""),
 	link = document.createElement('a');
-
- 	if (filename.length == 0) {
-
+	if (filename.length == 0) {
 		link.download = "Sin título";
 		link.href = c.toDataURL("image/png");
-
-	} else{
-
+	} else {
 		link.download = filename;
 		link.href = c.toDataURL("image/png");
-
 	}
-
 	link.click();
-
 }
 
-
+function cargarImagen(){
+	var input = document.getElementById("cargar");
+    var fReader = new FileReader();
+    fReader.readAsDataURL(input.files[0]);
+    fReader.onloadend = function(event){
+        var img = document.getElementById("img");
+        img.src = event.target.result;
+		console.log(typeof img)
+		console.log(img)
+        ctx.drawImage(img, 10, 10, 510, 510);
+    }
+}
