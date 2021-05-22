@@ -13,6 +13,7 @@ let x = 0;
 let y = 0;
 let color = "#000"
 let dibujando = false;
+generarColores()
 
 canvas.addEventListener("mouseout",function(e){
 	dibujando = false;
@@ -52,12 +53,15 @@ function dibujar(x1,y1,x2,y2){
 
 function generarColores(){
 	var div = document.querySelector(".colores");
+	div.innerHTML = ''
 	for(let i = 0; i < 20; i++){
-		var r = PasarDecimalAHexa(Math.round(Math.random()*255));
-		var g = PasarDecimalAHexa(Math.round(Math.random()*255));
-		var b = PasarDecimalAHexa(Math.round(Math.random()*255));
-		var hexa = `#${r}${g}${b}`;
-		console.log(hexa)
+		const randomR = PasarDecimalAHexa(Math.round(Math.random()*255))
+		const randomG = PasarDecimalAHexa(Math.round(Math.random()*255))
+		const randomB = PasarDecimalAHexa(Math.round(Math.random()*255))
+		var r = String(randomR).length - 1 ? randomR : `0${randomR}`;
+		var g = String(randomG).length - 1 ? randomG : `0${randomG}`;
+		var b = String(randomB).length - 1 ? randomB : `0${randomB}`;
+		const hexa = `#${r}${g}${b}`
 		div.innerHTML += `<div class="color" style="background:${hexa}" onclick="cambiarColor('${hexa}')"></div>`
 	}
 }
@@ -66,48 +70,19 @@ function cambiarColor(hexa){
 	color =hexa;
 }
 
-function PasarDecimalAHexa(num){
-	var decimal = num;
-	var hexa = 0;
-
-	for(let i = 0; i < 16; i++){
-		if (  (i*16**1) > decimal) {
-			hexa = pasarNumeroALetra(i-1);
-			decimal = decimal - ((i-1)*16**1);
-			break;			
-		}
-		if (i == 15) {
-			hexa = pasarNumeroALetra(15);
-			decimal = decimal - (15*16**1);
-		}
-
-	}
-	for(let i = 0; i < 16; i++){
-		if (  (i) > decimal) {
-			if (i != 15) {				
-				hexa += pasarNumeroALetra(i-1);
-				break;
-			}
-		}	
-		if ( i == 15) {
-			if (i >= decimal) {
-				hexa += pasarNumeroALetra(i-1);
-			} else {
-				hexa += pasarNumeroALetra(15);
-			}
-		}
-	}
-	return hexa;
+const pickEraser = () => {
+	color = "#FFF"
 }
 
-function pasarNumeroALetra(num){
-	var letras = ["A","B","C","D","E","F"];
-	if (num >= 10) {
-		num = num - 10;
-		return letras[num];
-	} else {
-		return num;
+const pickPencil = () => {
+	color = "#000"
+}
+
+function PasarDecimalAHexa(number){
+	if (number < 0) {
+		number = 0xFFFFFFFF + number + 1;
 	}
+	return number.toString(16).toUpperCase();
 }
 
 function download(){
@@ -124,6 +99,13 @@ function download(){
 	link.click();
 }
 
+const cleanWhiteboard = () => {
+	canvas.width = 600;
+	canvas.height = 600;
+	ctx.fillStyle = "#fff";
+	ctx.fillRect(0,0,600,600);
+}
+
 function cargarImagen(){
 	var input = document.getElementById("cargar");
     var fReader = new FileReader();
@@ -131,8 +113,6 @@ function cargarImagen(){
     fReader.onloadend = function(event){
         var img = document.getElementById("img");
         img.src = event.target.result;
-		console.log(typeof img)
-		console.log(img)
         ctx.drawImage(img, 10, 10, 510, 510);
     }
 }
