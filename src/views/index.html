@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="herramientas container" >
+		<button id="jpeg" onclick="download()">Descargar</button>
+		<input type="file" id="cargar" oninput="cargarImagen()">
+	</div>
+	<canvas id="canvas" ondrop="dropHandler(event);" ondragover="dragOverHandler(event);"></canvas>
+	<div class="colores container" >
+	</div>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>

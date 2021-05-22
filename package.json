@@ -1,0 +1,18 @@
+{
+  "name": "paint",
+  "version": "1.0.0",
+  "description": "paint trucho hecho con HTML, CSS y JS",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "author": "Lautaro Riofrio",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
