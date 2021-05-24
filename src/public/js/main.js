@@ -3,6 +3,7 @@ let ctx = canvas.getContext("2d");
 
 let rect = canvas.getBoundingClientRect();
 
+
 canvas.width = 600;
 canvas.height = 600;
 
@@ -12,44 +13,29 @@ ctx.fillRect(0,0,600,600);
 let x = 0;
 let y = 0;
 let color = "#000"
+let grosor = 1;
 let dibujando = false;
-generarColores()
+// generarColores()
 
-canvas.addEventListener("mouseout",function(e){
-	dibujando = false;
-})
-canvas.addEventListener("mousedown",function(e){
-	x = e.clientX - rect.left;
-	y = e.clientY - rect.top;
-	dibujando = true;
-});
 
-canvas.addEventListener("mousemove",function(e){
-	if (dibujando == true) {
-		dibujar(x,y,e.clientX - rect.left , e.clientY - rect.top)
-		x = e.clientX - rect.left;
-		y = e.clientY - rect.top;
-	}
-})
-
-canvas.addEventListener("mouseup",function(e){
-	if (dibujando == true) {
-		dibujar(x,y,e.clientX - rect.left , e.clientY - rect.top)
-		x = 0;
-		y = 0;
-		dibujando = false;
-	}
-})
 
 function dibujar(x1,y1,x2,y2){
 	ctx.beginPath();
 	ctx.strokeStyle = color;
-	ctx.lineWidth = 2;
+	ctx.lineWidth = grosor;
+	ctx.lineJoin = "miter";
+	ctx.lineCap = "round";
 	ctx.moveTo(x1,y1);
 	ctx.lineTo(x2,y2);
 	ctx.stroke();
+	ctx.fill();
 	ctx.closePath();
 }
+
+// function dibujar(x,y){
+// 	ctx.fillStyle = color;
+// 	ctx.fillRect (x, y,10,10);
+// }
 
 function generarColores(){
 	var div = document.querySelector(".colores");
@@ -67,16 +53,16 @@ function generarColores(){
 }
 
 function cambiarColor(hexa){
-	color =hexa;
+	if (tool_selected == 0) {
+		pencil_color = hexa;
+		color = pencil_color;
+	}
 }
 
-const pickEraser = () => {
-	color = "#FFF"
-}
 
-const pickPencil = () => {
-	color = "#000"
-}
+
+
+
 
 function PasarDecimalAHexa(number){
 	if (number < 0) {
@@ -99,12 +85,7 @@ function download(){
 	link.click();
 }
 
-const cleanWhiteboard = () => {
-	canvas.width = 600;
-	canvas.height = 600;
-	ctx.fillStyle = "#fff";
-	ctx.fillRect(0,0,600,600);
-}
+
 
 function cargarImagen(){
 	var input = document.getElementById("cargar");
@@ -115,4 +96,19 @@ function cargarImagen(){
         img.src = event.target.result;
         ctx.drawImage(img, 10, 10, 510, 510);
     }
+}
+
+
+
+
+
+
+function escribir(content){
+	var centerX = canvas.width/2;
+	ctx.textAlign="center";
+	ctx.font="30pt Verdana";
+	ctx.fillStyle = "blue";
+	ctx.fillText(content,centerX,60);
+      
+	ctx.lineWidth = 2;
 }
