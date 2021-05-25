@@ -48,6 +48,12 @@ canvas{
 
 	background: #ecf0f1;
 }
+.section{
+	position: absolute;
+	margin-left: -20px;
+	margin-top: 10px;
+}
+
 
 
 .button{
@@ -67,18 +73,6 @@ canvas{
 		border-radius: 10px;
 		background: none;
 	}
-.close-button{
-	background: #dfe6e9;
-}
-.close-button>div{
-	background: url("../icons/regresar.svg");
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-}
-	.close-button:hover{
-		background: #b2bec3;
-	}
-	
 
 .open-button{
 	background: #dfe6e9;
@@ -87,7 +81,21 @@ canvas{
 		background: #b2bec3;
 	}
 
+.large-button{
+	position: absolute;
+	width: 100px;
+	height: auto;
+	padding: 10px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+	font-family: lato;
+	font-size: 5mm;
+	background: #dfe6e9;
+	margin-left: -5px;
+	margin-top: -55px;
+	text-align: center;
 
+}
 /*--------------------------------*/
 /*	      	 OPTION BAR 		  */
 /*--------------------------------*/

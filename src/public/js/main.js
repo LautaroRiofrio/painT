@@ -15,7 +15,6 @@ let y = 0;
 let color = "#000"
 let grosor = 1;
 let dibujando = false;
-// generarColores()
 
 
 
@@ -38,8 +37,9 @@ function dibujar(x1,y1,x2,y2){
 // }
 
 function generarColores(){
-	var div = document.querySelector(".colores");
-	div.innerHTML = ''
+
+	const random_color_section = document.getElementById("random-color-section")
+	random_color_section.innerHTML = "";
 	for(let i = 0; i < 20; i++){
 		const randomR = PasarDecimalAHexa(Math.round(Math.random()*255))
 		const randomG = PasarDecimalAHexa(Math.round(Math.random()*255))
@@ -48,7 +48,7 @@ function generarColores(){
 		var g = String(randomG).length - 1 ? randomG : `0${randomG}`;
 		var b = String(randomB).length - 1 ? randomB : `0${randomB}`;
 		const hexa = `#${r}${g}${b}`
-		div.innerHTML += `<div class="color" style="background:${hexa}" onclick="cambiarColor('${hexa}')"></div>`
+		random_color_section.innerHTML += `<div class="bar-icon" style="background:${hexa}" onclick="cambiarColor('${hexa}')"></div>`
 	}
 }
 
@@ -111,4 +111,22 @@ function escribir(content){
 	ctx.fillText(content,centerX,60);
       
 	ctx.lineWidth = 2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.onload = ()=>{
+	inicializar()
+	generarColores();
 }

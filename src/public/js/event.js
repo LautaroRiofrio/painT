@@ -135,6 +135,3 @@ const cleanWhiteboard = () => {
 	ctx.fillStyle = "#fff";
 	ctx.fillRect(0,0,600,600);
 }
-window.onload = () =>{
-	inicializar()
-}
