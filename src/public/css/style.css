@@ -82,18 +82,20 @@ canvas{
 	}
 
 .large-button{
-	position: absolute;
+	/*position: absolute;*/
+
 	width: 100px;
 	height: auto;
 	padding: 10px;
+
 	border-radius: 10px;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+	background: #dfe6e9;
+
 	font-family: lato;
 	font-size: 5mm;
-	background: #dfe6e9;
-	margin-left: -5px;
-	margin-top: -55px;
 	text-align: center;
+
+	box-shadow: 2px 2px 2px rgba(0,0,0,.5);
 
 }
 /*--------------------------------*/
@@ -127,7 +129,38 @@ canvas{
 
 }
 
-#color-menu{}
+/*#color-menu{}*/
+
+
+
+
+
+#color-bar{
+	width: 200px;
+	height: 100vh;
+	position: absolute;
+}
+
+
+.color-show{
+	display: grid;
+	grid-template-columns:  40px 40px 40px 40px;
+	grid-auto-rows: 40px;
+	margin-left: 20px;
+	margin-top: 30px;
+}
+
+.colorButton{
+	margin-top: 20px;
+	margin-left: 40px;
+
+}
+
+#my-color-bar{
+	margin-top: 100px;
+	border:1px solid #000;
+}
+
 
 #open-color-menu>div{
 

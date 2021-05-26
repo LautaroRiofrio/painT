@@ -111,6 +111,55 @@ eraser_stroke.addEventListener("input",function(){
 
 
 
+
+
+
+
+
+
+
+randomColorButton.addEventListener("click",function(){
+	generarColores();
+});
+newColorButton.addEventListener("click",function(){
+	addColor()
+	generateMyColors();
+});
+
+var myColors = [];
+
+function addColor(){
+	if (tool_selected == 0) {
+		let x = 0;
+		for(let i = 0; i < myColors.length; i++){
+			if (myColors[i] == color) {
+				x++;
+				break;
+			}
+		}
+		if (x == 0) {
+			myColors.push(color);
+		} 
+	}
+}
+
+
+
+function generateMyColors(){
+	my_color_section.innerHTML = "";
+	for(let i = 0; i < myColors.length; i++){
+		my_color_section.innerHTML += `<div class="bar-icon" style="background:${myColors[i]}" onclick="cambiarColor('${myColors[i]}')"></div>`
+	}
+}
+
+
+
+
+
+
+
+
+
 var tool_selected = 0;
 var pencil_color = "#000";
 const eraser_color = "#fff";

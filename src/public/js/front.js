@@ -11,6 +11,11 @@ const close_color_menu = document.getElementById("close-color-menu");
 const pencil_stroke = document.getElementById("pencil-stroke");
 const eraser_stroke = document.getElementById("eraser-stroke");
 
+const randomColorButton = document.getElementById("randomColorButton");
+const newColorButton = document.getElementById("newColorButton");
+
+
+const my_color_section = document.getElementById("my-color-section");
 
 let toolStatus = 0;
 let colorStatus = 0;
