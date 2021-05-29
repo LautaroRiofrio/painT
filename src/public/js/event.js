@@ -12,13 +12,12 @@ canvas.addEventListener("mousedown",function(e){
 
 canvas.addEventListener("mousemove",function(e){
 	if (dibujando == true) {
-
 		dibujar(x,y,e.clientX - rect.left , e.clientY - rect.top)
 		x = e.clientX - rect.left;
 		y = e.clientY - rect.top;
-		
 	}
 
+	// cursorAppearence();
 
 	// setInterval(function(){
 
@@ -66,19 +65,18 @@ open_color_menu.addEventListener("click",function(){
 	}
 });
 
+
+
+
+
+//   PENCIL AND ERASER STROKE WIDTH
+
 function inicializar(){
-
-eraser_stroke.value = 1;
-pencil_stroke.value = 1;
-
-
-// pencil_width = pencil_stroke.value;
-// eraser_width = eraser_stroke.value;
+	eraser_stroke.value = 1;
+	pencil_stroke.value = 1;
 }
 
-// STROKE
-// var pencil_width = pencil_stroke.value;
-// var eraser_width = eraser_stroke.value;
+
 pencil_stroke.addEventListener("input",function(){
 	if (tool_selected == 0) {
 		grosor = pencil_stroke.value;
@@ -87,7 +85,6 @@ pencil_stroke.addEventListener("input",function(){
 			grosor = pencil_stroke.value;
 		}
 	} 
-
 	if (pencil_stroke.value == 0) {
 		pencil_stroke.value = 1;
 	}
@@ -102,7 +99,6 @@ eraser_stroke.addEventListener("input",function(){
 			grosor = eraser_stroke.value;
 		}
 	}
-
 	if (eraser_stroke.value == 0) {
 		eraser_stroke.value = 1;
 	}
@@ -126,7 +122,7 @@ newColorButton.addEventListener("click",function(){
 	generateMyColors();
 });
 
-var myColors = [];
+
 
 function addColor(){
 	if (tool_selected == 0) {
@@ -139,6 +135,7 @@ function addColor(){
 		}
 		if (x == 0) {
 			myColors.push(color);
+			subirLocalStorage()
 		} 
 	}
 }
@@ -148,14 +145,11 @@ function addColor(){
 function generateMyColors(){
 	my_color_section.innerHTML = "";
 	for(let i = 0; i < myColors.length; i++){
-		my_color_section.innerHTML += `<div class="bar-icon" style="background:${myColors[i]}" onclick="cambiarColor('${myColors[i]}')"></div>`
+		my_color_section.innerHTML += `
+		<div class="bar-icon" style="background:${myColors[i]}" onclick="cambiarColor('${myColors[i]}')"></div>
+		`;
 	}
 }
-
-
-
-
-
 
 
 
@@ -184,3 +178,11 @@ const cleanWhiteboard = () => {
 	ctx.fillStyle = "#fff";
 	ctx.fillRect(0,0,600,600);
 }
+
+
+// function cursorAppearence(){
+// 	if (tool_selected == 0) {
+// 		canvas.style.cursor = `url("../icons/pencil-cursor.png"),auto`;
+// 	}
+
+// }

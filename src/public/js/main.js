@@ -1,7 +1,8 @@
-let canvas = document.getElementById("canvas");
-let ctx = canvas.getContext("2d");
 
-let rect = canvas.getBoundingClientRect();
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+const rect = canvas.getBoundingClientRect();
 
 
 canvas.width = 600;
@@ -16,7 +17,7 @@ let color = "#000"
 let grosor = 1;
 let dibujando = false;
 
-
+var myColors = [];
 
 function dibujar(x1,y1,x2,y2){
 	ctx.beginPath();
@@ -31,13 +32,8 @@ function dibujar(x1,y1,x2,y2){
 	ctx.closePath();
 }
 
-// function dibujar(x,y){
-// 	ctx.fillStyle = color;
-// 	ctx.fillRect (x, y,10,10);
-// }
 
 function generarColores(){
-
 	const random_color_section = document.getElementById("random-color-section")
 	random_color_section.innerHTML = "";
 	for(let i = 0; i < 20; i++){
@@ -52,6 +48,16 @@ function generarColores(){
 	}
 }
 
+function PasarDecimalAHexa(number){
+	if (number < 0) {
+		number = 0xFFFFFFFF + number + 1;
+	}
+	return number.toString(16).toUpperCase();
+}
+
+
+
+
 function cambiarColor(hexa){
 	if (tool_selected == 0) {
 		pencil_color = hexa;
@@ -60,16 +66,6 @@ function cambiarColor(hexa){
 }
 
 
-
-
-
-
-function PasarDecimalAHexa(number){
-	if (number < 0) {
-		number = 0xFFFFFFFF + number + 1;
-	}
-	return number.toString(16).toUpperCase();
-}
 
 function download(){
 	var c = canvas;
@@ -85,20 +81,16 @@ function download(){
 	link.click();
 }
 
-
-
-function cargarImagen(){
-	var input = document.getElementById("cargar");
-    var fReader = new FileReader();
-    fReader.readAsDataURL(input.files[0]);
-    fReader.onloadend = function(event){
-        var img = document.getElementById("img");
-        img.src = event.target.result;
-        ctx.drawImage(img, 10, 10, 510, 510);
-    }
-}
-
-
+// function cargarImagen(){
+// 	var input = document.getElementById("cargar");
+//     var fReader = new FileReader();
+//     fReader.readAsDataURL(input.files[0]);
+//     fReader.onloadend = function(event){
+//         var img = document.getElementById("img");
+//         img.src = event.target.result;
+//         ctx.drawImage(img, 10, 10, 510, 510);
+//     }
+// }
 
 
 
@@ -115,18 +107,10 @@ function escribir(content){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 window.onload = ()=>{
-	inicializar()
+	bajarLocalStorage();
+	inicializar();
 	generarColores();
+	generateMyColors();
+
 }
