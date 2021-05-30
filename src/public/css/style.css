@@ -1,9 +1,6 @@
 *{
 	margin:0;
 	padding:0;
-	/*cursor: url(../icons/pencil-cursor.png),auto;*/
-	  cursor: url(../icons/pencil-cursor.png), auto;
-
 }
 
 *{
@@ -97,6 +94,9 @@ canvas{
 	box-shadow: 2px 2px 2px rgba(0,0,0,.5);
 
 }
+
+
+
 /*--------------------------------*/
 /*	      	 OPTION BAR 		  */
 /*--------------------------------*/
@@ -157,15 +157,14 @@ canvas{
 	}
 
 		#my-color-bar{
-			margin-top: 100px;
-			
+			margin-top: 70px;
 			border:1px solid #000;
 		}
 
 
 #open-color-menu>div{
 
-	background: url("../icons/palette-solid.svg");
+	background: url("../icons/drop-solid.svg");
 	background-size: 100% 100%;
 	background-repeat: no-repeat;
 }

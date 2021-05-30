@@ -66,9 +66,6 @@ open_color_menu.addEventListener("click",function(){
 });
 
 
-
-
-
 //   PENCIL AND ERASER STROKE WIDTH
 
 function inicializar(){
@@ -104,12 +101,6 @@ eraser_stroke.addEventListener("input",function(){
 	}
 	document.getElementById("eraser-stroke-value").innerHTML = eraser_stroke.value;
 });
-
-
-
-
-
-
 
 
 
@@ -178,11 +169,3 @@ const cleanWhiteboard = () => {
 	ctx.fillStyle = "#fff";
 	ctx.fillRect(0,0,600,600);
 }
-
-
-// function cursorAppearence(){
-// 	if (tool_selected == 0) {
-// 		canvas.style.cursor = `url("../icons/pencil-cursor.png"),auto`;
-// 	}
-
-// }
